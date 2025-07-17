@@ -1,14 +1,21 @@
 
 version: 0.0
 os: linux
+version: 0.0
+
+os: linux
+
 files:
- - source: /
-   destination: /home/ec2-user/employee-app
+
+  - source: /
+
+    destination: /var/www/html
+ 
 hooks:
- BeforeInstall:
-   - location: scripts/stop_server.sh
-     timeout: 60
-     runas: ec2-user
+ ApplicationStart:
+   - location: scripts/restart_apache.sh
+     timeout: 300
+     runas: root
  AfterInstall:
    - location: scripts/install_dependencies.sh
      timeout: 120
