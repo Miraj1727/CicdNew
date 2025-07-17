@@ -1,66 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title> AWS CloudFront </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-      /* Style the header */
-      header {
-        background-color: #0073e6;
-        padding: 30px;
-        text-align: center;
-        color: white;
-        font-size: 36px;
-      }
-      /* Style the top navigation bar */
-      nav {
-        background-color: #f2f2f2;
-        overflow: hidden;
-        text-align: center;
-      }
-      nav a {
-        display: inline-block;
-        color: #333;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 20px;
-      }
-      nav a:hover {
-        background-color: #ddd;
-        color: #0073e6;
-      }
-      /* Style the content */
-      main {
-        padding: 20px;
-        text-align: center;
-      }
-      main h2 {
-        font-size: 32px;
-        color: #0073e6;
-      }
-      main p {
-        font-size: 24px;
-        color: #333;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>AWS </h1>
-    </header>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">Pricing</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </nav>
-    <main>
-      <h2>Welcome to AWS Training By Pankaj Dube Sir  </h2>
-      <p>CICD Project Created By Miraj Mahajan.</p>
-      <p>Contact us today to learn more about how we can help you achieve your goals.</p>
-      <p>Hello indore.</p>
-    </main>
-  </body>
+<head>
+  <title>Employee Registration</title>
+</head>
+<body>
+  <h2>Employee Registration Form</h2>
+  <form id="employeeForm">
+    <label for="fname">First Name:</label><br>
+    <input type="text" id="fname" name="fname" required><br>
+
+    <label for="lname">Last Name:</label><br>
+    <input type="text" id="lname" name="lname" required><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="position">Position:</label><br>
+    <input type="text" id="position" name="position" required><br>
+
+    <button type="submit">Register</button>
+  </form>
+  <div id="response"></div>
+
+  <script>
+    document.getElementById('employeeForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const formData = {
+        fname: document.getElementById('fname').value,
+        lname: document.getElementById('lname').value,
+        email: document.getElementById('email').value,
+        position: document.getElementById('position').value
+      };
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(formData)
+      });
+      const result = await response.json();
+      document.getElementById('response').innerText = result.message;
+      document.getElementById('employeeForm').reset();
+    });
+  </script>
+</body>
 </html>
