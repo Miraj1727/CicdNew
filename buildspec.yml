@@ -1,20 +1,18 @@
 version: 0.2
-
 phases:
-  install:
-    runtime-versions:
-      nodejs: 18
-    commands:
-      - echo Installing dependencies...
-      - npm install
-  build:
-    commands:
-      - echo Build phase is skipped because you have only static HTML and Node backend
-  post_build:
-    commands:
-      - echo Build completed - ready for CodeDeploy
-
+ install:
+   runtime-versions:
+     nodejs: 18
+   commands:
+     - echo Installing Node.js dependencies...
+     - npm install
+ build:
+   commands:
+     - echo No build step needed for this Node.js app
+ post_build:
+   commands:
+     - echo Build complete - ready for CodeDeploy
 artifacts:
-  files:
-    - '**/*'
-  discard-paths: no
+ files:
+   - '**/*'
+ discard-paths: no
