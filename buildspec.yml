@@ -2,13 +2,17 @@ version: 0.2
 phases:
  install:
    runtime-versions:
-     python: 3.8
+     nodejs: 18
    commands:
-     - echo "Installing Python dependencies..."
-     - pip3 install -r requirements.txt || true  # Optional
+     - echo "Installing Node dependencies..."
+     - npm install || true     # optional, in case you use Express or any other packages
  build:
    commands:
      - echo "Build step completed."
 artifacts:
  files:
-   - '**/*'
+   - appspec.yml
+   - server.js
+   - index.html
+   - scripts/**      # shell scripts
+   - css/**          # if you have any CSS folder
