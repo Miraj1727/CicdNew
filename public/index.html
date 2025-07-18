@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Employee Registration</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Employee Registration Form</h2>
+<form id="employeeForm">
+<label for="fname">First Name:</label><br>
+<input type="text" id="fname" name="fname" required><br>
+<label for="lname">Last Name:</label><br>
+<input type="text" id="lname" name="lname" required><br>
+<label for="email">Email:</label><br>
+<input type="email" id="email" name="email" required><br>
+<label for="position">Position:</label><br>
+<input type="text" id="position" name="position" required><br>
+<button type="submit">Register</button>
+</form>
+<div id="response"></div>
+<script>
+   document.getElementById('employeeForm').addEventListener('submit', async function(event) {
+     event.preventDefault();
+     const formData = {
+       fname: document.getElementById('fname').value,
+       lname: document.getElementById('lname').value,
+       email: document.getElementById('email').value,
+       position: document.getElementById('position').value
+     };
+     const response = await fetch('/register', {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify(formData)
+     });
+     const result = await response.json();
+     document.getElementById('response').innerText = result.message;
+     document.getElementById('employeeForm').reset();
+   });
+</script>
+</body>
+</html>

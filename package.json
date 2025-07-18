@@ -1,7 +1,6 @@
 {
- "name": "employee-app",
+ "name": "employee-registration",
  "version": "1.0.0",
- "description": "A simple employee registration app using Express.js",
  "main": "server.js",
  "scripts": {
    "start": "node server.js"
